@@ -57,25 +57,26 @@ def bdd2coco_detection(labeled_images, save_dir):
 
     try: # Avoid KeyError 
         for l in i['labels']:
-        annotation = dict()
-        if l['category'] in id_dict.keys():
-            tmp = 1
-            empty_image = False
-            annotation["iscrowd"] = 0
-            annotation["image_id"] = image['id']
-            x1 = l['box2d']['x1']
-            y1 = l['box2d']['y1']
-            x2 = l['box2d']['x2']
-            y2 = l['box2d']['y2']
-            annotation['bbox'] = [x1, y1, x2 - x1, y2 - y1]
-            annotation['area'] = float((x2 - x1) * (y2 - y1))
-            annotation['category_id'] = id_dict[l['category']]
-            annotation['ignore'] = 0
-            annotation['id'] = l['id']
-            annotation['segmentation'] = [[x1, y1, x1, y2, x2, y2, x2, y1]]
-            annotations.append(annotation)
-        else:
-            ignore_categories.add(l['category'])
+          annotation = dict()
+          if l['category'] in id_dict.keys():
+              tmp = 1
+              empty_image = False
+              annotation["iscrowd"] = 0
+              annotation["image_id"] = image['file_name']
+              #annotation['imae_id'] = image['id']
+              x1 = l['box2d']['x1']
+              y1 = l['box2d']['y1']
+              x2 = l['box2d']['x2']
+              y2 = l['box2d']['y2']
+              annotation['bbox'] = [x1, y1, x2 - x1, y2 - y1]
+              annotation['area'] = float((x2 - x1) * (y2 - y1))
+              annotation['category_id'] = id_dict[l['category']]
+              annotation['ignore'] = 0
+              annotation['id'] = l['id']
+              annotation['segmentation'] = [[x1, y1, x1, y2, x2, y2, x2, y1]]
+              annotations.append(annotation)
+          else:
+              ignore_categories.add(l['category'])
     except KeyError:
         print("skip no label")
     

@@ -16,9 +16,10 @@ from tqdm import tqdm
 import os
 
 """hyper parameters"""
-json_file_path = 'E:/Dataset/mscoco2017/annotations/instances_train2017.json'
-images_dir_path = 'mscoco2017/train2017/'
-output_path = '../data/val.txt'
+json_file_path = '/nfs/stak/users/ohda/my_scratch/web/Codes/CS535/project/pytorch-YOLOv4/data/bdd100k/labels/det_20_coco/det_train_coco.json'
+#json_file_path = '/nfs/stak/users/ohda/my_scratch/web/Codes/CS535/project/pytorch-YOLOv4/data/mscoco2017/annotations/instances_train2017_filtered.json'
+images_dir_path = 'bdd100k/images/100k/train'
+output_path = '../data/bdd_train.txt'
 
 """load json file"""
 name_box_id = defaultdict(list)
@@ -31,8 +32,8 @@ images = data['images']
 annotations = data['annotations']
 for ant in tqdm(annotations):
     id = ant['image_id']
-    # name = os.path.join(images_dir_path, images[id]['file_name'])
-    name = os.path.join(images_dir_path, '{:012d}.jpg'.format(id))
+    name = os.path.join(images_dir_path, id)
+    # name = os.path.join(images_dir_path, '{:012d}.jpg'.format(id))
     cat = ant['category_id']
 
     if cat >= 1 and cat <= 11:
