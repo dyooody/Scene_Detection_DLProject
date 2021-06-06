@@ -502,6 +502,8 @@ if __name__ == "__main__":
             namesfile = 'data/voc.names'
         elif n_classes == 80:
             namesfile = 'data/coco.names'
+        elif n_classes == 10:
+            namesfile = 'data/bdd.names'
         else:
             print("please give namefile")
 
