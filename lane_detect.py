@@ -1,7 +1,7 @@
 '''
 @Time          : 
 @Author        : yongjae lee, jisoo lee
-@File          : demo.py
+@File          : lane_detect.py
 @Noice         :
 @Modificattion :
     @Author    :
